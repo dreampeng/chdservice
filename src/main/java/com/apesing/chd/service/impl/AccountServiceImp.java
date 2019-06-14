@@ -77,11 +77,11 @@ public class AccountServiceImp implements AccountService {
     @Override
     public void addAccount(String userName, String passWord, String mail) {
         TbluAccount account = new TbluAccount();
-        account.setCreatedTime(new Date());
+        account.setCreatedtime(new Date());
         account.setMail(mail);
-        account.setID(userName);
-        account.setPW(passWord);
-        account.setUID(1);
-        accountMapper.insert(account);
+        account.setId(userName);
+        account.setPw(passWord);
+//        account.setUid(3);
+        accountMapper.insertAccount(account);
     }
 }

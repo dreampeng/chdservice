@@ -23,7 +23,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     private MyMailService myMailService;
 
     @Autowired
-    public VerifyCodeServiceImpl(VerifyMapper verifyMapper,MyMailService myMailService) {
+    public VerifyCodeServiceImpl(VerifyMapper verifyMapper, MyMailService myMailService) {
         this.verifyMapper = verifyMapper;
         this.myMailService = myMailService;
     }
@@ -41,6 +41,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
             verifyCode.setIsuse("0");
             verifyCode.setAddr(mail);
             verifyCode.setType(type);
+            verifyMapper.insert(verifyCode);
         } else {
             code = verifyCode.getCode();
         }
@@ -50,7 +51,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     @Override
     public boolean verifyCode(String addr, String code, String type) {
         VerifyCode verifyCode = getByAddrAndType(addr, type);
-        if (verifyCode.getCode().equals(code)) {
+        if (verifyCode != null && verifyCode.getCode().equals(code)) {
             verifyCode.setIsuse("1");
             verifyCode.setUsetime(new Date());
             verifyMapper.updateById(verifyCode);

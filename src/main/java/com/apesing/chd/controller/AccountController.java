@@ -33,9 +33,9 @@ public class AccountController {
         if (StringUtil.isEmpty(userName, passWord, mail, mailCode)) {
             code = "9998";
         } else {
-            if (accountService.getAccountById(userName) == null) {
+            if (accountService.getAccountById(userName) != null) {
                 code = "9001";
-            } else if (accountService.getAccountByMail(mail) == null) {
+            } else if (accountService.getAccountByMail(mail) != null) {
                 code = "9002";
             } else if (!verifyCodeService.verifyCode(mail, mailCode, "1")) {
                 code = "9100";

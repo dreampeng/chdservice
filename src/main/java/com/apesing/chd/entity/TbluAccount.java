@@ -12,47 +12,47 @@ import java.util.Date;
 @TableName("TbluAccount")
 public class TbluAccount {
     @TableId
-    private int UID;//uid
-    private String ID;//用户名
-    private String PW;//密码
+    private int uid;//uid
+    private String id;//用户名
+    private String pw;//密码
     private String mail;//邮箱
-    private Date latestLoginTime;//最后登录时间
-    private int failedLoginTimes;//登录失败次数
-    private Date createdTime;//创建时间
-    private int Block;//是否锁定
-    private String Name;//实名认证
-    private String SSN;//身份证
-    private int Gender;//性别
-    private String NickName;//昵称
-    private BigInteger DigitID;//
-    private Date BlockTime;//锁定时间
+    private Date latestlogintime;//最后登录时间
+    private int failedlogintimes;//登录失败次数
+    private Date createdtime;//创建时间
+    private int block;//是否锁定
+    private String name;//实名认证
+    private String ssn;//身份证
+    private int gender;//性别
+    private String nickname;//昵称
+    private BigInteger digitid;//
+    private Date blocktime;//锁定时间
     private String ip;//ip
     private int tid;
-    private int ElaspedMin;
-    private int IsOnlineStatus;
+    private int elaspedmin;
+    private int isonlinestatus;
 
-    public int getUID() {
-        return UID;
+    public int getUid() {
+        return uid;
     }
 
-    public void setUID(int UID) {
-        this.UID = UID;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getPW() {
-        return PW;
+    public String getPw() {
+        return pw;
     }
 
-    public void setPW(String PW) {
-        this.PW = PW;
+    public void setPw(String pw) {
+        this.pw = pw;
     }
 
     public String getMail() {
@@ -63,84 +63,84 @@ public class TbluAccount {
         this.mail = mail;
     }
 
-    public Date getLatestLoginTime() {
-        return latestLoginTime;
+    public Date getLatestlogintime() {
+        return latestlogintime;
     }
 
-    public void setLatestLoginTime(Date latestLoginTime) {
-        this.latestLoginTime = latestLoginTime;
+    public void setLatestlogintime(Date latestlogintime) {
+        this.latestlogintime = latestlogintime;
     }
 
-    public int getFailedLoginTimes() {
-        return failedLoginTimes;
+    public int getFailedlogintimes() {
+        return failedlogintimes;
     }
 
-    public void setFailedLoginTimes(int failedLoginTimes) {
-        this.failedLoginTimes = failedLoginTimes;
+    public void setFailedlogintimes(int failedlogintimes) {
+        this.failedlogintimes = failedlogintimes;
     }
 
-    public Date getCreatedTime() {
-        return createdTime;
+    public Date getCreatedtime() {
+        return createdtime;
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
+    public void setCreatedtime(Date createdtime) {
+        this.createdtime = createdtime;
     }
 
     public int getBlock() {
-        return Block;
+        return block;
     }
 
     public void setBlock(int block) {
-        Block = block;
+        this.block = block;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    public String getSSN() {
-        return SSN;
+    public String getSsn() {
+        return ssn;
     }
 
-    public void setSSN(String SSN) {
-        this.SSN = SSN;
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
     }
 
     public int getGender() {
-        return Gender;
+        return gender;
     }
 
     public void setGender(int gender) {
-        Gender = gender;
+        this.gender = gender;
     }
 
-    public String getNickName() {
-        return NickName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNickName(String nickName) {
-        NickName = nickName;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public BigInteger getDigitID() {
-        return DigitID;
+    public BigInteger getDigitid() {
+        return digitid;
     }
 
-    public void setDigitID(BigInteger digitID) {
-        DigitID = digitID;
+    public void setDigitid(BigInteger digitid) {
+        this.digitid = digitid;
     }
 
-    public Date getBlockTime() {
-        return BlockTime;
+    public Date getBlocktime() {
+        return blocktime;
     }
 
-    public void setBlockTime(Date blockTime) {
-        BlockTime = blockTime;
+    public void setBlocktime(Date blocktime) {
+        this.blocktime = blocktime;
     }
 
     public String getIp() {
@@ -159,19 +159,19 @@ public class TbluAccount {
         this.tid = tid;
     }
 
-    public int getElaspedMin() {
-        return ElaspedMin;
+    public int getElaspedmin() {
+        return elaspedmin;
     }
 
-    public void setElaspedMin(int elaspedMin) {
-        ElaspedMin = elaspedMin;
+    public void setElaspedmin(int elaspedmin) {
+        this.elaspedmin = elaspedmin;
     }
 
-    public int getIsOnlineStatus() {
-        return IsOnlineStatus;
+    public int getIsonlinestatus() {
+        return isonlinestatus;
     }
 
-    public void setIsOnlineStatus(int isOnlineStatus) {
-        IsOnlineStatus = isOnlineStatus;
+    public void setIsonlinestatus(int isonlinestatus) {
+        this.isonlinestatus = isonlinestatus;
     }
 }

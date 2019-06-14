@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  *
  **/
 @RestController
-@RequestMapping(value = "/verify", produces = {"application/json"})
+    @RequestMapping(value = "/verify", produces = {"application/json"})
 public class VerifyCodeController {
     private VerifyCodeService verifyCodeService;
     private AccountService accountService;
