@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <!-- 定义日志文件 输出位置 -->
+    <property name="log.home_dev_dir" value="E:/log"/>
+    <property name="log.app_name" value="chd"/>
+    <!-- 日志最大的历史 30天 -->
+    <property name="log.maxHistory" value="180"/>
+    <property name="log.maxSize" value="25MB"/>
+    <property name="root_level" value="info"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] %logger - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ERROR_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.home_dev_dir}/error/%d{yyyy-MM-dd}/${log.app_name}-%i.log</fileNamePattern>
+            <maxHistory>${log.maxHistory}</maxHistory>
+            <MaxFileSize>${log.maxSize}</MaxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %logger - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="INFO_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <springProfile name="dev">
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${log.home_dev_dir}/info/%d{yyyy-MM-dd}/${log.app_name}-%i.log</fileNamePattern>
+                <maxHistory>${log.maxHistory}</maxHistory>
+                <MaxFileSize>${log.maxSize}</MaxFileSize>
+            </rollingPolicy>
+        </springProfile>
+        <springProfile name="prod">
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${log.home_prod_dir}/info/%d{yyyy-MM-dd}/${log.app_name}-%i.log</fileNamePattern>
+                <maxHistory>${log.maxHistory}</maxHistory>
+                <MaxFileSize>${log.maxSize}</MaxFileSize>
+            </rollingPolicy>
+        </springProfile>
+        <springProfile name="test">
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${log.home_test_dir}/info/%d{yyyy-MM-dd}/${log.app_name}-%i.log</fileNamePattern>
+                <maxHistory>${log.maxHistory}</maxHistory>
+                <MaxFileSize>${log.maxSize}</MaxFileSize>
+            </rollingPolicy>
+        </springProfile>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %logger - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <root level="${root_level}">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="INFO_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </root>
+</configuration>
