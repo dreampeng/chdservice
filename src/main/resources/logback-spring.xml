@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
     <!-- 定义日志文件 输出位置 -->
-    <property name="log.home_dev_dir" value="E:/log"/>
+    <property name="log.home_dev_dir" value="c:/chd/log"/>
     <property name="log.app_name" value="chd"/>
     <!-- 日志最大的历史 30天 -->
     <property name="log.maxHistory" value="180"/>
