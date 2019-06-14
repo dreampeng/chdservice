@@ -1,5 +1,6 @@
 package com.apesing.chd.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.math.BigInteger;
@@ -10,6 +11,7 @@ import java.util.Date;
  **/
 @TableName("TbluAccount")
 public class TbluAccount {
+    @TableId
     private int UID;//uid
     private String ID;//用户名
     private String PW;//密码

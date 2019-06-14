@@ -89,6 +89,18 @@ public class MyAspect {
             case "0000":
                 msg = "请求成功";
                 break;
+            case "9001":
+                msg="用户名已存在";
+                break;
+            case "9002":
+                msg="该邮箱已被注册";
+                break;
+            case "9100":
+                msg="邮箱密令错误";
+                break;
+            case "9998":
+                msg = "请完整填写";
+                break;
             case "9999":
                 msg = "系统错误请联系管理员";
                 break;

@@ -18,6 +18,12 @@ public interface AccountService {
     //根据NickName获取用户
     TbluAccount getAccountByNickName(String nickName);
 
+    //根据邮箱获取用户
+    TbluAccount getAccountByMail(String mail);
+
     //根据传入参数获取用户
     List<TbluAccount> getAccountByParam(Map<String, Object> param);
+
+    //新增用户
+    void addAccount(String userName, String passWord, String mail);
 }
