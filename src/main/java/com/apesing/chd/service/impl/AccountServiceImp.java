@@ -5,6 +5,7 @@ import com.apesing.chd.mapper.AccountMapper;
 import com.apesing.chd.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import java.util.Map;
  * 用户接口
  **/
 @Service
+@Transactional
 public class AccountServiceImp implements AccountService {
 
     private AccountMapper accountMapper;

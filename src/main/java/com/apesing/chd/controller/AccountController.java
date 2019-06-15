@@ -47,4 +47,25 @@ public class AccountController {
         retJson.put("code", code);
         return retJson;
     }
+
+    @PostMapping("/isreg")
+    public JSONObject isRegister(@RequestBody JSONObject json) {
+        JSONObject retJson = new JSONObject();
+        String type = json.getString("type");
+        String addr = json.getString("addr");
+        String code;
+        if (StringUtil.isEmpty(type, addr)) {
+            code = "9998";
+        } else {
+            if ("1".equals(type) && accountService.getAccountById(addr) != null) {
+                code = "9001";
+            } else if ("2".equals(type) && accountService.getAccountByMail(addr) != null) {
+                code = "9002";
+            } else {
+                code = "0000";
+            }
+        }
+        retJson.put("code", code);
+        return retJson;
+    }
 }

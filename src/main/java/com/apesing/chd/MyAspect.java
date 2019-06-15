@@ -76,7 +76,7 @@ public class MyAspect {
             returnValue = new JSONObject();
             returnValue.put("code", "9999");
             throwable.printStackTrace();
-            returnValue.put("error", throwable.getCause().getMessage());
+            returnValue.put("error", throwable.getMessage());
             logger.error(actionName, actionParam, inputParam, returnValue, throwable, null, this.getClass());
         }
         returnValue.put("msg", sysCodeMsg(returnValue.getString("code")));

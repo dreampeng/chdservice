@@ -18,7 +18,7 @@ import java.util.Date;
  * WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = OFF, ALLOW_PAGE_LOCKS = OFF)
  * )
  */
-@TableName("verifycode")
+@TableName("z_lun_verifycode")
 public class VerifyCode {
     @TableId
     private String id;//主键
