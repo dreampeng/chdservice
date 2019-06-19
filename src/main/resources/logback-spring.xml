@@ -38,27 +38,11 @@
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
-        <springProfile name="dev">
             <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
                 <fileNamePattern>${log.home_dev_dir}/info/%d{yyyy-MM-dd}/${log.app_name}-%i.log</fileNamePattern>
                 <maxHistory>${log.maxHistory}</maxHistory>
                 <MaxFileSize>${log.maxSize}</MaxFileSize>
             </rollingPolicy>
-        </springProfile>
-        <springProfile name="prod">
-            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-                <fileNamePattern>${log.home_prod_dir}/info/%d{yyyy-MM-dd}/${log.app_name}-%i.log</fileNamePattern>
-                <maxHistory>${log.maxHistory}</maxHistory>
-                <MaxFileSize>${log.maxSize}</MaxFileSize>
-            </rollingPolicy>
-        </springProfile>
-        <springProfile name="test">
-            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-                <fileNamePattern>${log.home_test_dir}/info/%d{yyyy-MM-dd}/${log.app_name}-%i.log</fileNamePattern>
-                <maxHistory>${log.maxHistory}</maxHistory>
-                <MaxFileSize>${log.maxSize}</MaxFileSize>
-            </rollingPolicy>
-        </springProfile>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %logger - %msg%n</pattern>
             <charset>UTF-8</charset>
