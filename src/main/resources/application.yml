@@ -21,9 +21,9 @@ spring:
             class: javax.net.ssl.SSLSocketFactory
   datasource:
    username: sa
-   password: Znx050
+   password: Chd1977
    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-   url: jdbc:sqlserver://39.106.15.164:59157;databasename=dbLataleAccount
+   url: jdbc:sqlserver://43.249.192.222:59157;databasename=dbLataleAccount
    hikari:
     minimum-idle: 10
     maximum-pool-size: 25
