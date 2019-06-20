@@ -6,13 +6,13 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.util.Date;
 
 /**
- * CREATE TABLE [dbo].[verifycode] (
+ * CREATE TABLE [dbo].[z_lun_verifycode] (
  * [id] varchar(32) COLLATE Chinese_PRC_CI_AS NOT NULL,
  * [addr] varchar(255) COLLATE Chinese_PRC_CI_AS NOT NULL,
  * [code] varchar(32) COLLATE Chinese_PRC_CI_AS NOT NULL,
  * [type] varchar(2) COLLATE Chinese_PRC_CI_AS NOT NULL,
  * [createtime] datetime NOT NULL,
- * [createtime] datetime ,
+ * [usetime] datetime ,
  * [isuse] varchar(2) COLLATE Chinese_PRC_CI_AS NOT NULL,
  * PRIMARY KEY CLUSTERED ([id])
  * WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = OFF, ALLOW_PAGE_LOCKS = OFF)
