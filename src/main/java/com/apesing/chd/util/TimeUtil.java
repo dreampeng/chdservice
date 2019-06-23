@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 
 public class TimeUtil {
@@ -39,6 +40,62 @@ public class TimeUtil {
         } catch (ParseException e) {
             return null;
         }
+    }
+
+    /**
+     * 获取星期的数字  1是周日 2是周一 .... 7是周六
+     *
+     * @param date 时间
+     * @return int
+     */
+    public static int getWeek(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar.get(Calendar.DAY_OF_WEEK);
+    }
+
+    /**
+     * 获取星期几
+     *
+     * @param date
+     * @return
+     */
+    public static String getWeekStr(Date date) {
+        int week = getWeek(date);
+        String weekStr = "";
+        /*星期日:Calendar.SUNDAY=1
+         *星期一:Calendar.MONDAY=2
+         *星期二:Calendar.TUESDAY=3
+         *星期三:Calendar.WEDNESDAY=4
+         *星期四:Calendar.THURSDAY=5
+         *星期五:Calendar.FRIDAY=6
+         *星期六:Calendar.SATURDAY=7 */
+        switch (week) {
+            case 1:
+                weekStr = "星期日";
+                break;
+            case 2:
+                weekStr = "星期一";
+                break;
+            case 3:
+                weekStr = "星期二";
+                break;
+            case 4:
+                weekStr = "星期三";
+                break;
+            case 5:
+                weekStr = "星期四";
+                break;
+            case 6:
+                weekStr = "星期五";
+                break;
+            case 7:
+                weekStr = "星期六";
+                break;
+            default:
+                break;
+        }
+        return weekStr;
     }
 
 
