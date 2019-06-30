@@ -28,6 +28,15 @@ public class AccountServiceImp implements AccountService {
 
 
     @Override
+    public TbluAccount userLogin(String name, String pass) {
+        TbluAccount tbluAccount = getAccountById(name);
+        if (tbluAccount != null && pass.equals(tbluAccount.getPw())) {
+            return tbluAccount;
+        }
+        return null;
+    }
+
+    @Override
     public TbluAccount getAccountById(String id) {
         Map<String, Object> param = new HashMap<>();
         param.put("id", id);

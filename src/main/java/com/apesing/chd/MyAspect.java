@@ -90,14 +90,23 @@ public class MyAspect {
             case "0000":
                 msg = "请求成功";
                 break;
+            case "1001":
+                msg = "请勿重复签到";
+                break;
+            case "1002":
+                msg = "请空出仓库第一格";
+                break;
+            case "9000":
+                msg = "用户名或密码错误";
+                break;
             case "9001":
-                msg="用户名已存在";
+                msg = "用户名已存在";
                 break;
             case "9002":
-                msg="该邮箱已被注册";
+                msg = "该邮箱已被注册";
                 break;
             case "9100":
-                msg="邮箱密令错误";
+                msg = "邮箱密令错误";
                 break;
             case "9998":
                 msg = "请完整填写";

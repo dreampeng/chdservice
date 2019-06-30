@@ -6,12 +6,15 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.util.Date;
 
+
 /**
  * CREATE TABLE [dbo].[z_lun_signrecord] (
- * [id] varchar NOT NULL,
+ * [id] varchar(32) NOT NULL,
  * [uid] varchar(32) NOT NULL,
- * [cid] varchar(32) NULL,
- * [signdate] datetime NOT NULL,
+ * [year] varchar(4) COLLATE Chinese_PRC_CI_AS  NOT NULL,
+ * [month] varchar(2) COLLATE Chinese_PRC_CI_AS  NOT NULL,
+ * [day] varchar(2) COLLATE Chinese_PRC_CI_AS  NOT NULL,
+ * [createtime] datetime NOT NULL,
  * PRIMARY KEY CLUSTERED ([id])
  * WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
  * )
@@ -21,8 +24,10 @@ public class SignRecord {
     @TableId
     private String id;
     private String uid;
-    private String cid;
-    private Date signdate;
+    private String year;
+    private String month;
+    private String day;
+    private Date createtime;
 
     public String getId() {
         return id;
@@ -40,19 +45,35 @@ public class SignRecord {
         this.uid = uid;
     }
 
-    public String getCid() {
-        return cid;
+    public String getYear() {
+        return year;
     }
 
-    public void setCid(String cid) {
-        this.cid = cid;
+    public void setYear(String year) {
+        this.year = year;
     }
 
-    public Date getSigndate() {
-        return signdate;
+    public String getMonth() {
+        return month;
     }
 
-    public void setSigndate(Date signdate) {
-        this.signdate = signdate;
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 }

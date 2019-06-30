@@ -7,7 +7,7 @@ spring:
   mail:
     host: smtp.qq.com             #邮箱服务器地址
     username: 2933890588@qq.com      #用户名
-    password: bupsbfhwvcjoddbg    #密码
+    password: mubptijcwxbhdfif    #密码
     default-encoding: UTF-8       #编码
     port: 465                     #端口
     #配置SSL访问

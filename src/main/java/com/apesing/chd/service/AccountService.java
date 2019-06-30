@@ -9,6 +9,10 @@ import java.util.Map;
  * 用户接口
  */
 public interface AccountService {
+
+    //登录
+    TbluAccount userLogin(String name, String pass);
+
     //根据账号获取用户
     TbluAccount getAccountById(String id);
 

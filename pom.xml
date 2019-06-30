@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.apesing</groupId>
     <artifactId>chd</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <name>chd</name>
     <description>the service for chd</description>
 

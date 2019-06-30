@@ -4,9 +4,13 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.apesing.chd.entity.SignRecord;
 import com.apesing.chd.entity.SignReward;
+import com.apesing.chd.entity.TbluAccount;
+import com.apesing.chd.mapper.DataUse;
 import com.apesing.chd.mapper.SignRecordMapper;
 import com.apesing.chd.mapper.SignRewardMapper;
+import com.apesing.chd.mapper.TbluItemMapper;
 import com.apesing.chd.service.SignService;
+import com.apesing.chd.util.StringUtil;
 import com.apesing.chd.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,15 +26,22 @@ public class SignServiceImpl implements SignService {
 
     private final SignRewardMapper rewardMapper;
 
+    private final TbluItemMapper tbluItemMapper;
+
+    private final DataUse dataUse;
+
     @Autowired
-    public SignServiceImpl(SignRecordMapper recordMapper, SignRewardMapper rewardMapper) {
+    public SignServiceImpl(SignRecordMapper recordMapper, SignRewardMapper rewardMapper, TbluItemMapper tbluItemMapper, DataUse dataUse) {
         this.recordMapper = recordMapper;
         this.rewardMapper = rewardMapper;
+        this.tbluItemMapper = tbluItemMapper;
+        this.dataUse = dataUse;
     }
 
 
     @Override
     public JSONArray getSignList(String year, String month) {
+        dataUse.useAccount();
         Map<String, Object> param = new HashMap<>();
         param.put("year", year);
         param.put("month", month);
@@ -51,28 +62,66 @@ public class SignServiceImpl implements SignService {
     }
 
     @Override
-    public String signIn(String uid) {
-        return null;
+    @Transactional
+    public String signIn(TbluAccount tbluAccount) {
+        Map<String, Object> param = new HashMap<>();
+        String year = Integer.toString(TimeUtil.getYear(new Date()));
+        String month = Integer.toString(TimeUtil.getMonth(new Date()));
+        String day = Integer.toString(TimeUtil.getDay(new Date()));
+        param.put("year", year);
+        param.put("month", month);
+        param.put("day", day);
+        param.put("uid", tbluAccount.getId());
+        List<SignRecord> recordList = recordMapper.selectByMap(param);
+        List<Map<String, Object>> items = tbluItemMapper.getListByUidAndType(tbluAccount.getUid(), 9);
+        if (items.size() < 1) {
+            return "-3";
+        }
+        //仓库第一格被使用
+        for (Map<String, Object> item : items) {
+            if ("1".equals(item.get("containerslot"))) {
+                return "-2";
+            }
+        }
+        param = new HashMap<>();
+        param.put("year", year);
+        param.put("month", month);
+        param.put("day", day);
+        dataUse.useAccount();
+        List<SignReward> rewardList = rewardMapper.selectByMap(param);
+        if (recordList.size() < 1) {
+            SignRecord signRecord = new SignRecord();
+            signRecord.setId(StringUtil.getUuid());
+            signRecord.setUid(tbluAccount.getId());
+            signRecord.setCreatetime(new Date());
+            signRecord.setYear(year);
+            signRecord.setMonth(month);
+            signRecord.setDay(day);
+            recordMapper.insert(signRecord);
+            param = new HashMap<>();
+            param.put("uid", tbluAccount.getUid());
+            param.put("charid", items.get(0).get("charid"));
+            param.put("containertype", rewardList.get(0).getContype());
+            param.put("containerslot", 1);
+            param.put("typeid", rewardList.get(0).getItemid());//////////////////////
+            param.put("cnt", rewardList.get(0).getCount());///////////////
+            param.put("rare", 1);
+            tbluItemMapper.insert(param);
+            return "1";
+        }
+        return "-1";
     }
 
     @Override
-    public JSONArray getSignedList(String year, String month) {
+    public List<String> getSignedList(String year, String month, String uid) {
+        dataUse.useAccount();
         Map<String, Object> param = new HashMap<>();
         param.put("year", year);
         param.put("month", month);
-        JSONArray recordArray = new JSONArray();
+        param.put("uid", uid);
+        List<String> recordArray = new ArrayList<>();
         List<SignRecord> recordList = recordMapper.selectByMap(param);
-        recordList.forEach(record -> {
-            JSONObject temp = new JSONObject();
-            Date date = record.getSigndate();
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            temp.put("year", calendar.get(Calendar.YEAR));
-            temp.put("month", calendar.get(Calendar.MONTH) + 1);
-            temp.put("day", calendar.get(Calendar.DAY_OF_MONTH));
-            temp.put("week", TimeUtil.getWeek(date));
-            recordArray.add(temp);
-        });
+        recordList.forEach(record -> recordArray.add(record.getDay()));
         return recordArray;
     }
 }
