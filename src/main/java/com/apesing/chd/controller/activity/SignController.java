@@ -29,6 +29,10 @@ public class SignController {
     public JSONObject getSignList() {
         JSONObject retJson = new JSONObject();
         TbluAccount tbluAccount = (TbluAccount) session.getAttribute("user");
+        if (tbluAccount == null) {
+            retJson.put("code","9997");
+            return retJson;
+        }
         retJson.put("code", "0000");
         retJson.put("data", signService.getSignedList(Integer.toString(TimeUtil.getYear(new Date())),
                 Integer.toString(TimeUtil.getMonth(new Date())), tbluAccount.getId()));
@@ -39,17 +43,24 @@ public class SignController {
     public JSONObject sign() {
         JSONObject retJson = new JSONObject();
         TbluAccount tbluAccount = (TbluAccount) session.getAttribute("user");
-        String result = signService.signIn(tbluAccount);
+        if (tbluAccount == null) {
+            retJson.put("code","9997");
+            return retJson;
+        }
         String code = "";
+        String result = signService.signIn(tbluAccount);
         switch (result) {
             case "1":
                 code = "0000";
                 break;
             case "-1":
-                code = "0000";
+                code = "1001";
                 break;
             case "-2":
-                code = "0000";
+                code = "1002";
+                break;
+            case "-3":
+                code = "1003";
                 break;
         }
         retJson.put("code", code);

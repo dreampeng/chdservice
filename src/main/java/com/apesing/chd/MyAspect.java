@@ -96,6 +96,9 @@ public class MyAspect {
             case "1002":
                 msg = "请空出仓库第一格";
                 break;
+            case "1003":
+                msg = "请在仓库放入一个物品（不能放在第一格）";
+                break;
             case "9000":
                 msg = "用户名或密码错误";
                 break;
@@ -110,6 +113,9 @@ public class MyAspect {
                 break;
             case "9998":
                 msg = "请完整填写";
+                break;
+            case "9997":
+                msg = "请先登录";
                 break;
             case "9999":
                 msg = "系统错误请联系管理员";

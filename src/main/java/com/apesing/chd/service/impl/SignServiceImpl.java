@@ -79,7 +79,7 @@ public class SignServiceImpl implements SignService {
         }
         //仓库第一格被使用
         for (Map<String, Object> item : items) {
-            if ("1".equals(item.get("containerslot"))) {
+            if ("1".equals(item.get("containerslot").toString())) {
                 return "-2";
             }
         }

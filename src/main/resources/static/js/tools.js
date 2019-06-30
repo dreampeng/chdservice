@@ -31,7 +31,7 @@ function sendAjax(url, data, funsu, sync, mask) {
             msgError("系统错误,请联系管理员");
         },
         success: function (retData) {
-            if (retData.code === "9998") {
+            if (retData.code === "9997") {
                 msgError(retData.msg);
                 setTimeout('window.location.href = "/login.html";', 2000);
                 return false;
